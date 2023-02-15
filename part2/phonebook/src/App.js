@@ -1,11 +1,5 @@
 import { useState } from 'react'
-
-const Person = ({ person }) => {
-  return (
-    <div>{person.name}</div>
-  )
-}
-
+import Person from './components/Person'
 
 const App = () => {
   const [persons, setPersons] = useState([
