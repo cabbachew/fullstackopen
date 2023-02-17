@@ -26,19 +26,9 @@
       "id": 5
     },
     {
-      "name": "Herb Hoover",
-      "number": "098-765-4321",
-      "id": 6
-    },
-    {
       "name": "William Clinton",
       "number": "111-222-3333",
       "id": 7
-    },
-    {
-      "name": "Jorge Bush",
-      "number": "444-555-6666",
-      "id": 8
     }
   ]
 }
