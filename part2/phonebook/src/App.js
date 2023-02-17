@@ -27,7 +27,23 @@ const App = () => {
     // Check for duplicate names and alert if found
     // Note: some() returns true if any of the elements in the array pass the test
     if (persons.some(person => person.name.toLowerCase() === newName.toLowerCase())) {
-      alert(`${newName} is already added to phonebook`)
+      if (window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)) {
+        const person = persons.find(p => p.name.toLowerCase() === newName.toLowerCase())
+        const changedPerson = { ...person, number: newNumber }
+        personService
+          .update(person.id, changedPerson)
+          .then(returnedPerson => {
+            setPersons(persons.map(p => p.id !== person.id ? p : returnedPerson))
+            setNewName('')
+            setNewNumber('')
+          })
+          .catch(error => {
+            alert(
+              `The person '${person.name}' was already removed from server`
+            )
+            setPersons(persons.filter(p => p.id !== person.id))
+          })
+      }
       return
     }
     // Save new person and reset input fields
