@@ -31,7 +31,7 @@ const App = () => {
       {countriesToShow.length === 1 ? (
         <Country country={countriesToShow[0]} />
       ) : (
-        <Countries countries={countriesToShow} />
+        <Countries countries={countriesToShow} setFilter={setFilter} />
       )}
     </div>
   );
