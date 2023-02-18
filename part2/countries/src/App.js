@@ -16,7 +16,7 @@ const App = () => {
     ? countries.filter((country) =>
         country.name.common.toLowerCase().includes(filter.toLowerCase())
       )
-    : countries;
+    : [];
 
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
