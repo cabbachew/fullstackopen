@@ -1,7 +1,17 @@
+import { useState, useEffect } from 'react';
+import countryService from './services/countries';
+
 const App = () => {
+  const [filter, setFilter] = useState('');
+
+  const handleFilterChange = (event) => {
+    setFilter(event.target.value);
+  };
+
   return (
     <div>
-      <h1>Hello World</h1>
+      <span> find countries </span>
+      <input value={filter} onChange={handleFilterChange} />
     </div>
   );
 }
