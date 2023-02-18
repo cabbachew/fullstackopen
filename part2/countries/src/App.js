@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import countryService from './services/countries';
 import Filter from './components/Filter';
-import Notification from './components/Notification';
 
 const App = () => {
   const [filter, setFilter] = useState('');
   const [countries, setCountries] = useState([]);
-  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     countryService.getAll().then((initialCountries) => {
@@ -19,7 +17,7 @@ const App = () => {
         country.name.common.toLowerCase().includes(filter.toLowerCase())
       )
     : [];
-
+  
   const handleFilterChange = (event) => {
     setFilter(event.target.value);
   };
@@ -30,12 +28,14 @@ const App = () => {
   return (
     <div>
       <Filter filter={filter} handleFilterChange={handleFilterChange} />
-      <Notification message={errorMessage} />
-
-      {countriesToShow.map((country) => (
-        // cca3 is a unique identifier for each country
-        <div key={country.cca3}>{country.name.common}</div>
-      ))} 
+      {countriesToShow.length > 10 ? (
+        <div>Too many matches, specify another filter</div>
+      ) : (
+        countriesToShow.map((country) => (
+          // cca3 is a unique identifier for each country
+          <div key={country.cca3}>{country.name.common}</div>
+        ))
+      )}
     </div>
   );
 }
