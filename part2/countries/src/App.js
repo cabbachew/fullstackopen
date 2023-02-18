@@ -9,6 +9,7 @@ const App = () => {
   useEffect(() => {
     countryService.getAll().then((initialCountries) => {
       setCountries(initialCountries);
+      console.log('number of countries retrieved:', initialCountries.length);
     });
   }, []);
 
@@ -22,19 +23,19 @@ const App = () => {
     setFilter(event.target.value);
   };
 
-  // Log the number of countries to show
-  console.log('number of countries to show', countriesToShow.length);
-
   return (
     <div>
       <Filter filter={filter} handleFilterChange={handleFilterChange} />
       {countriesToShow.length > 10 ? (
         <div>Too many matches, specify another filter</div>
       ) : (
-        countriesToShow.map((country) => (
-          // cca3 is a unique identifier for each country
-          <div key={country.cca3}>{country.name.common}</div>
-        ))
+        countriesToShow
+          // sort countries by name
+          .sort((a, b) => a.name.common.localeCompare(b.name.common))
+          .map((country) => (
+            // cca3 is a unique identifier for each country
+            <div key={country.cca3}>{country.name.common}</div>
+          ))
       )}
     </div>
   );
