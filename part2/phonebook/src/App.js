@@ -41,7 +41,10 @@ const App = () => {
             setNewName('')
             setNewNumber('')
             setMessage(
-              `Updated ${returnedPerson.name}`
+              {
+                body: `Updated ${returnedPerson.name}`,
+                type: 'success'
+              }
             )
             setTimeout(() => {
               setMessage(null)
@@ -49,9 +52,19 @@ const App = () => {
             , 5000) // 5 seconds
           })
           .catch(error => {
-            alert(
-              `The person '${person.name}' was already removed from server`
+            // alert(
+            //   `The person '${person.name}' was already removed from server`
+            // )
+            setMessage(
+              {
+                body: `Information of '${person.name}' has already been removed from server`,
+                type: 'error'
+              }
             )
+            setTimeout(() => {
+              setMessage(null)
+            }
+            , 5000) // 5 seconds
             setPersons(persons.filter(p => p.id !== person.id))
           })
       }
@@ -65,7 +78,10 @@ const App = () => {
         setNewName('')
         setNewNumber('')
         setMessage(
-          `Added ${returnedPerson.name}`
+          {
+            body: `Added ${returnedPerson.name}`,
+            type: 'success'
+          }
         )
         setTimeout(() => {
           setMessage(null)
@@ -96,6 +112,16 @@ const App = () => {
         .remove(id)
         .then(() => {
           setPersons(persons.filter(p => p.id !== id))
+          setMessage(
+            {
+              body: `Deleted ${person.name}`,
+              type: 'success'
+            }
+          )
+          setTimeout(() => {
+            setMessage(null)
+          }
+          , 5000) // 5 seconds
         })
     }
   }
