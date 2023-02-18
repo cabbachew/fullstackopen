@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import countryService from './services/countries';
 import Filter from './components/Filter';
+import Country from './components/Country';
 import Countries from './components/Countries';
 
 const App = () => {
@@ -10,7 +11,7 @@ const App = () => {
   useEffect(() => {
     countryService.getAll().then((initialCountries) => {
       setCountries(initialCountries);
-      console.log('number of countries retrieved:', initialCountries.length);
+      console.log(`${initialCountries.length} countries loaded from API`);
     });
   }, []);
 
@@ -27,7 +28,11 @@ const App = () => {
   return (
     <div>
       <Filter filter={filter} handleFilterChange={handleFilterChange} />
-      <Countries countries={countriesToShow} />
+      {countriesToShow.length === 1 ? (
+        <Country country={countriesToShow[0]} />
+      ) : (
+        <Countries countries={countriesToShow} />
+      )}
     </div>
   );
 }
