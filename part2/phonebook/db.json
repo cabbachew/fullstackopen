@@ -22,13 +22,18 @@
     },
     {
       "name": "Jark Manzer",
-      "number": "123-456-7890",
+      "number": "151-343-9999",
       "id": 5
     },
     {
       "name": "William Clinton",
       "number": "333-222-1111",
       "id": 6
+    },
+    {
+      "name": "Juha Tauriainen",
+      "number": "789-987-1234",
+      "id": 7
     }
   ]
 }
