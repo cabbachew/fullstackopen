@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import countryService from './services/countries';
+import Filter from './components/Filter';
 
 const App = () => {
   const [filter, setFilter] = useState('');
@@ -10,8 +11,7 @@ const App = () => {
 
   return (
     <div>
-      <span> find countries </span>
-      <input value={filter} onChange={handleFilterChange} />
+      <Filter filter={filter} handleFilterChange={handleFilterChange} />
     </div>
   );
 }
