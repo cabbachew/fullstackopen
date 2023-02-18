@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import countryService from './services/countries';
 import Filter from './components/Filter';
+import Countries from './components/Countries';
 
 const App = () => {
   const [filter, setFilter] = useState('');
@@ -26,17 +27,7 @@ const App = () => {
   return (
     <div>
       <Filter filter={filter} handleFilterChange={handleFilterChange} />
-      {countriesToShow.length > 10 ? (
-        <div>Too many matches, specify another filter</div>
-      ) : (
-        countriesToShow
-          // sort countries by name
-          .sort((a, b) => a.name.common.localeCompare(b.name.common))
-          .map((country) => (
-            // cca3 is a unique identifier for each country
-            <div key={country.cca3}>{country.name.common}</div>
-          ))
-      )}
+      <Countries countries={countriesToShow} />
     </div>
   );
 }
