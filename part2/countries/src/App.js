@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import countryService from './services/countries';
-import weatherService from './services/weather';
 import Filter from './components/Filter';
 import Country from './components/Country';
 import Countries from './components/Countries';
@@ -26,17 +25,11 @@ const App = () => {
     setFilter(event.target.value);
   };
 
-  const getWeather = (city) => {
-    weatherService.getWeather(city).then((weather) => {
-      console.log(weather);
-    });
-  };
-
   return (
     <div>
       <Filter filter={filter} handleFilterChange={handleFilterChange} />
       {countriesToShow.length === 1 ? (
-        <Country country={countriesToShow[0]} getWeather={getWeather} />
+        <Country country={countriesToShow[0]} />
       ) : (
         <Countries countries={countriesToShow} setFilter={setFilter} />
       )}

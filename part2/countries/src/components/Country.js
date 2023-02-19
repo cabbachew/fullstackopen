@@ -1,5 +1,17 @@
-const Country = ({ country, getWeather }) => {
-  const weatherData = getWeather(country.capital);
+import { useState, useEffect } from 'react';
+import weather from '../services/weather';
+import weatherService from '../services/weather';
+import Weather from './Weather';
+
+const Country = ({ country }) => {
+  const [weatherData, setWeatherData] = useState(null);
+
+  useEffect(() => {
+    weatherService.getWeather(country.capital).then((data) => {
+      setWeatherData(data);
+      console.log(`Weather data loaded for ${country.capital}`);
+    });
+  }, [weatherData]);
 
   return (
     <div>
@@ -14,8 +26,10 @@ const Country = ({ country, getWeather }) => {
         )}
       </ul>
       <img src={country.flags.png} alt="flag" width="150" />
-       {/* <h1>{countriesToShow[0].flag}</h1> */}
-      <h2>Weather in {country.capital}</h2>
+      {/* Only render the weather component if weather data is available */}
+      {weatherData && (
+        <Weather weatherData={weatherData} />
+      )}
     </div>
   );
 }
