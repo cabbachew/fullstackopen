@@ -1,6 +1,7 @@
 import axios from 'axios'
 // const baseUrl = 'http://localhost:3001/persons' // When using json-server
-const baseUrl = 'http://localhost:3001/api/persons' // When using phonebook-backend
+// const baseUrl = 'http://localhost:3001/api/persons' // When using phonebook-backend
+const baseUrl = '/api/persons' // When serving the frontend from the backend
 
 const getAll = () => {
   const request = axios.get(baseUrl)
