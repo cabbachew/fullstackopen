@@ -1,3 +1,6 @@
 # Ignore directories that require a dedicated repository
 /part3/phonebook-backend
 !/part3/.keep
+
+/part4/bloglist
+!/part4/.keep
