@@ -52,12 +52,9 @@ const App = () => {
             , 5000) // 5 seconds
           })
           .catch(error => {
-            // alert(
-            //   `The person '${person.name}' was already removed from server`
-            // )
             setMessage(
               {
-                body: `Information of '${person.name}' has already been removed from server`,
+                body: error.response.data.error,
                 type: 'error'
               }
             )
@@ -65,7 +62,6 @@ const App = () => {
               setMessage(null)
             }
             , 5000) // 5 seconds
-            setPersons(persons.filter(p => p.id !== person.id))
           })
       }
       return
