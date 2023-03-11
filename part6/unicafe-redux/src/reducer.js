@@ -1,5 +1,3 @@
-import { createStore } from 'redux'
-
 const initialState = {
   good: 0,
   ok: 0,
