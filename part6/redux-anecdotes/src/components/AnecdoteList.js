@@ -16,11 +16,19 @@ const Anecdote = ({ anecdote, handleClick }) => {
 }
 
 const AnecdoteList = () => {
-  // const anecdotes = useSelector(state => state)
+  const anecdotes = useSelector(state => {
+    if (state.filter === '') {
+      return state.anecdotes
+    }
+    return state.anecdotes.filter(anecdote =>
+      anecdote.content.toLowerCase().includes(state.filter.toLowerCase())
+    )
+  })
+
   const dispatch = useDispatch()
 
   // Given a and b, negative preserves order, positive reverses order
-  const sortedAnecdotes = useSelector(state => state.sort((a, b) => b.votes - a.votes))
+  const sortedAnecdotes = anecdotes.sort((a, b) => b.votes - a.votes)
 
   const vote = (id) => {
     console.log('vote', id)

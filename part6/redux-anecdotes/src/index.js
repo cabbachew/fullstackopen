@@ -14,11 +14,8 @@ const reducer = combineReducers({
 
 const store = createStore(reducer)
 
-console.log(store.getState())
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    {/* <App /> */}
-    <div />
+    <App />
   </Provider>
 )
