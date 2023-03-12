@@ -6,6 +6,11 @@ const App = () => {
 
   const vote = (id) => {
     console.log('vote', id)
+    // useDispatch allows access to Redux store's dispatch method
+    dispatch({
+      type: 'VOTE',
+      payload: { id }
+    })
   }
 
   return (
