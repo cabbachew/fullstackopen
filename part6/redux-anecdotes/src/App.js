@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
+import { voteAnecdote, createAnecdote } from './reducers/anecdoteReducer'
 
 const App = () => {
   const anecdotes = useSelector(state => state)
@@ -7,24 +8,14 @@ const App = () => {
   const vote = (id) => {
     console.log('vote', id)
     // useDispatch allows access to Redux store's dispatch method
-    dispatch({
-      type: 'VOTE',
-      payload: { id }
-    })
+    dispatch(voteAnecdote(id))
   }
 
   const addAnecdote = (event) => {
     event.preventDefault()
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
-    dispatch({
-      type: 'NEW_ANECDOTE',
-        payload: {
-        content,
-        votes: 0,
-        id: (100000 * Math.random()).toFixed(0)
-      }
-    })
+    dispatch(createAnecdote(content))
   }
 
   // Given a and b, negative preserves order, positive reverses order
