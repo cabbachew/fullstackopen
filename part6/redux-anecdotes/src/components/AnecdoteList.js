@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { voteAnecdote } from '../reducers/anecdoteReducer'
+import { setNotification, clearNotification } from '../reducers/notificationReducer'
 
 const Anecdote = ({ anecdote, handleClick }) => {
   return (
@@ -34,6 +35,12 @@ const AnecdoteList = () => {
     console.log('vote', id)
     // useDispatch allows access to Redux store's dispatch method
     dispatch(voteAnecdote(id))
+    const votedAnecdote = anecdotes.find(anecdote => anecdote.id === id)
+    dispatch(setNotification(`You voted '${votedAnecdote.content}'`))
+
+    setTimeout(() => {
+      dispatch(clearNotification())
+    }, 5000)
   }
 
   return (
