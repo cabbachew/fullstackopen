@@ -19,7 +19,7 @@ const App = () => {
     event.target.anecdote.value = ''
     dispatch({
       type: 'NEW_ANECDOTE',
-      payload: {
+        payload: {
         content,
         votes: 0,
         id: (100000 * Math.random()).toFixed(0)
@@ -27,10 +27,13 @@ const App = () => {
     })
   }
 
+  // Given a and b, negative preserves order, positive reverses order
+  const sortedAnecdotes = anecdotes.sort((a, b) => b.votes - a.votes)
+
   return (
     <div>
       <h2>Anecdotes</h2>
-      {anecdotes.map(anecdote =>
+      {sortedAnecdotes.map(anecdote =>
         <div key={anecdote.id}>
           <div>
             {anecdote.content}
