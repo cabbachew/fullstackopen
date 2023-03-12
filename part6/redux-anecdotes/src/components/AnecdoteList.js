@@ -28,7 +28,7 @@ const AnecdoteList = () => {
   const dispatch = useDispatch()
 
   // Given a and b, negative preserves order, positive reverses order
-  const sortedAnecdotes = anecdotes.sort((a, b) => b.votes - a.votes)
+  const sortedAnecdotes = [...anecdotes].sort((a, b) => b.votes - a.votes)
 
   const vote = (id) => {
     console.log('vote', id)
