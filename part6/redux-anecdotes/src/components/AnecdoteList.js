@@ -30,7 +30,6 @@ const AnecdoteList = () => {
 
   return (
     <>
-      <h2>Anecdotes</h2>
       {sortedAnecdotes.map(anecdote =>
         <Anecdote
           key={anecdote.id}
