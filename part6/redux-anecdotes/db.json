@@ -1,5 +1,5 @@
 {
-  "anecdotes":[
+  "anecdotes": [
     {
       "content": "If it hurts, do it more often",
       "id": "47145",
@@ -29,6 +29,31 @@
       "content": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
       "id": "98312",
       "votes": 0
+    },
+    {
+      "content": "Simple things should be simple, complex things should be possible.",
+      "votes": 0,
+      "id": "u3IqoZr"
+    },
+    {
+      "content": "Before software can be reusable it first has to be usable.",
+      "votes": 0,
+      "id": "beXSAGy"
+    },
+    {
+      "content": "There are only two kinds of languages: the ones people complain about and the ones nobody uses.",
+      "votes": 0,
+      "id": "ktI3y2g"
+    },
+    {
+      "content": "Optimism is an occupational hazard of programming: feedback is the treatment.",
+      "votes": 0,
+      "id": "fn751sg"
+    },
+    {
+      "content": "Don’t comment bad code — rewrite it.",
+      "votes": 0,
+      "id": "WM3TmQz"
     }
   ]
 }
