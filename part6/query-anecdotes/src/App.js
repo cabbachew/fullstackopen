@@ -25,7 +25,9 @@ const App = () => {
     console.log('vote')
   }
 
-  const result = useQuery('anecdotes', getAnecdotes)
+  const result = useQuery('anecdotes', getAnecdotes, {
+    refetchOnWindowFocus: false
+  })
   console.log(result)
 
   if (result.isLoading) {
