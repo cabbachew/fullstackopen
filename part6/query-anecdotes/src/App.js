@@ -1,10 +1,18 @@
 
-import { useQuery } from 'react-query'
-import { getAnecdotes } from './requests'
+import { useQuery, useMutation } from 'react-query'
+import { getAnecdotes, createAnecdote } from './requests'
 import AnecdoteForm from './components/AnecdoteForm'
 import Notification from './components/Notification'
 
 const App = () => {
+  const newAnecdoteMutation = useMutation(createAnecdote)
+
+  const onCreate = (event) => {
+    event.preventDefault()
+    const content = event.target.anecdote.value
+    event.target.anecdote.value = ''
+    newAnecdoteMutation.mutate(content)
+  }
 
   const handleVote = (anecdote) => {
     console.log('vote')
@@ -24,7 +32,7 @@ const App = () => {
       <h3>Anecdote app</h3>
     
       <Notification />
-      <AnecdoteForm />
+      <AnecdoteForm onCreate={onCreate} />
     
       {anecdotes.map(anecdote =>
         <div key={anecdote.id}>
