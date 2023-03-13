@@ -31,7 +31,7 @@ const AnecdoteList = () => {
   // Given a and b, negative preserves order, positive reverses order
   const sortedAnecdotes = [...anecdotes].sort((a, b) => b.votes - a.votes)
 
-  const vote = (id) => {
+  const handleVote = (id) => {
     console.log('vote', id)
     // useDispatch allows access to Redux store's dispatch method
     dispatch(voteAnecdote(id))
@@ -49,11 +49,11 @@ const AnecdoteList = () => {
         <Anecdote
           key={anecdote.id}
           anecdote={anecdote}
-          handleClick={() => vote(anecdote.id)}
+          handleClick={() => handleVote(anecdote.id)}
         />
       )}
     </>
   )
 }
 
-export default AnecdoteList  
+export default AnecdoteList
