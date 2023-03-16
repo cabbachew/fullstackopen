@@ -23,6 +23,14 @@ export const NotificationContextProvider = ({ children }) => {
   )
 }
 
+export const setNotificationFor = (notificationDispatch, notification, time) => {
+  notificationDispatch({ type: 'SHOW_NOTIFICATION', data: notification })
+  setTimeout(() => {
+    notificationDispatch({ type: 'HIDE_NOTIFICATION' })
+  }
+  , time * 1000)
+}
+
 export const useNotificationValue = () => {
   const notificationAndDispatch = useContext(NotificationContext)
   return notificationAndDispatch[0]
