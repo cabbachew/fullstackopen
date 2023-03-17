@@ -23,9 +23,14 @@ export const NotificationContextProvider = ({ children }) => {
   )
 }
 
+let timeoutId = null
+
 export const setNotificationFor = (notificationDispatch, notification, time) => {
   notificationDispatch({ type: 'SHOW_NOTIFICATION', data: notification })
-  setTimeout(() => {
+  if (timeoutId) {
+    clearTimeout(timeoutId)
+  }
+  timeoutId = setTimeout(() => {
     notificationDispatch({ type: 'HIDE_NOTIFICATION' })
   }
   , time * 1000)
