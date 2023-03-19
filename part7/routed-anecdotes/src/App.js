@@ -10,7 +10,8 @@ import { useState } from 'react'
 import {
   Routes, Route,
   // useParams,
-  useMatch
+  useMatch,
+  useNavigate
 } from 'react-router-dom'
 
 const App = () => {
@@ -33,9 +34,12 @@ const App = () => {
 
   const [notification, setNotification] = useState('')
 
+  const navigate = useNavigate()
+
   const addNew = (anecdote) => {
     anecdote.id = Math.round(Math.random() * 10000)
     setAnecdotes(anecdotes.concat(anecdote))
+    navigate('/')
   }
 
   const anecdoteById = (id) =>
@@ -52,6 +56,7 @@ const App = () => {
     setAnecdotes(anecdotes.map(a => a.id === id ? voted : a))
   }
 
+  // Pass single anecdote as a prop to Anecdote component
   const match = useMatch('/anecdotes/:id')
   const anecdote = match
     ? anecdotes.find(a => a.id === Number(match.params.id))
