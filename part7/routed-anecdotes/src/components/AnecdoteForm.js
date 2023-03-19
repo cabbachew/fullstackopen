@@ -1,14 +1,9 @@
-// import { useState } from 'react'
 import { useField } from '../hooks'
 
 const AnecdoteForm = ({ addNew }) => {
-  const content = useField('text')
-  const author = useField('text')
-  const info = useField('text')
-  // const [content, setContent] = useState('')
-  // const [author, setAuthor] = useState('')
-  // const [info, setInfo] = useState('')
-
+  const { reset: resetContent, ...content } = useField('text')
+  const { reset: resetAuthor, ...author } = useField('text')
+  const { reset: resetInfo, ...info } = useField('text')
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -27,22 +22,21 @@ const AnecdoteForm = ({ addNew }) => {
         <div>
           content
           <input name='content' {...content} />
-          {/* <input name='content' value={content.value} onChange={content.onChange} /> */}
-          {/* <input name='content' value={content} onChange={(e) => setContent(e.target.value)} /> */}
         </div>
         <div>
           author
           <input name='author' {...author} />
-          {/* <input name='author' value={author.value} onChange={author.onChange} /> */}
-          {/* <input name='author' value={author} onChange={(e) => setAuthor(e.target.value)} /> */}
         </div>
         <div>
           url for more info
           <input name='info' {...info} />
-          {/* <input name='info' value={info.value} onChange={info.onChange} /> */}
-          {/* <input name='info' value={info} onChange={(e)=> setInfo(e.target.value)} /> */}
         </div>
         <button>create</button>
+        <button type='button' onClick={() => {
+          resetContent()
+          resetAuthor()
+          resetInfo()
+        }}>reset</button>
       </form>
     </div>
   )
